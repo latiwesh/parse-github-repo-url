@@ -37,6 +37,10 @@ module.exports = function (string) {
   var m = /^\/([\w-]+)\/([\w-.]+)\/archive\/(.+)\.tar\.gz?$/.exec(path)
   if (m) return m.slice(1, 4)
 
+// https://bitbucket.com/org/owner/project-name-with-hyphen.git
+  var m = /^\/([\w-.]+)\/([\w-.]+)\/([\w-.\-]+)$/.exec(path)
+  if (m) return m.slice(2,4)
+
   // https://docs.gitlab.com/ce/user/group/subgroups/
   if (~url.host.indexOf('gitlab')) {
     var m = /^\/((?:[\w-.]+\/)+)([\w-.]+)$/.exec(path)
